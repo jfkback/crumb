@@ -2,7 +2,7 @@
 # 🍪 CRUMB: A Complex Retrieval Unified Multi-task Benchmark 🍪
 
 [![Hugging Face Datasets](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-yellow)](https://huggingface.co/datasets/jfkback/crumb)
-[![ArXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)]([https://arxiv.org/abs/XXXX.XXXXX](https://arxiv.org/abs/2509.07253))
+[![ArXiv](https://img.shields.io/badge/arXiv-2509.07253-b31b1b.svg)]([https://arxiv.org/abs/2509.07253](https://arxiv.org/abs/2509.07253))
 
 **CRUMB** is a diverse and realistic benchmark designed to evaluate the capabilities of information retrieval models on complex, multi-aspect search tasks. It consists of eight meticulously curated retrieval tasks that have multiple components or requirements (i.e. are complex) unlike many common existing evaluation collections and benchmarks.
 
