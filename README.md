@@ -2,15 +2,15 @@
 # 🍪 CRUMB: A Complex Retrieval Unified Multi-task Benchmark 🍪
 
 [![Hugging Face Datasets](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-yellow)](https://huggingface.co/datasets/jfkback/crumb)
-[![ArXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)](https://arxiv.org/abs/XXXX.XXXXX) <!-- TODO: Add ArXiv link after release -->
+[![ArXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)]([https://arxiv.org/abs/XXXX.XXXXX](https://arxiv.org/abs/2509.07253))
 
-**CRUMB** is a diverse and realistic benchmark designed to evaluate the capabilities of information retrieval models on complex, multi-aspect search tasks. It consists of eight meticulously curated retrieval tasks that go beyond simple keyword matching, reflecting the nuanced and ambitious information needs of modern users.
+**CRUMB** is a diverse and realistic benchmark designed to evaluate the capabilities of information retrieval models on complex, multi-aspect search tasks. It consists of eight meticulously curated retrieval tasks that have multiple components or requirements (i.e. are complex) unlike many common existing evaluation collections and benchmarks.
 
 This repository contains the code, data, and artifacts associated with our paper:
 
 > **Benchmarking Information Retrieval Models on Complex Retrieval Tasks**  
 > *Julian Killingback and Hamed Zamani*  
-> [Link to Paper (ArXiv)](https://arxiv.org/abs/XXXX.XXXXX) <!-- TODO: Add ArXiv link after release -->
+> [Link to Paper (ArXiv)]([https://arxiv.org/abs/2509.07253](https://arxiv.org/abs/2509.07253))
 
 ## Overview
 
@@ -21,7 +21,7 @@ Our benchmark demonstrates that even state-of-the-art retrieval models struggle 
 ### Key Features
 
 *   **Eight Diverse Tasks**: Covers a wide range of domains including legal QA, clinical trials, code, scientific papers, and more.
-*   **Complex, Multi-Aspect Queries**: Queries are naturalistic and often contain multiple constraints, logical operations, or reasoning requirements.
+*   **Complex Queries**: Queries are natural and contain multiple constraints or requirements.
 *   **Realistic & Standardized Data**: Documents are provided in a unified Markdown format, with contextualized chunking to preserve document structure.
 *   **Passage and Full-Document Versions**: Evaluate models on both chunked passages (for standard retrievers) and full documents (for long-context models).
 *   **Validation Sets Included**: Each task includes a development set to enable tuning and few-shot prompting approaches.
@@ -106,5 +106,17 @@ To provide a better intuition for each task, we will release a sample of queries
 ## Citing CRUMB
 
 If you use the CRUMB benchmark or any of its associated artifacts in your research, please cite our paper.
+
+```
+@misc{killingback2025benchmarkinginformationretrievalmodels,
+      title={Benchmarking Information Retrieval Models on Complex Retrieval Tasks}, 
+      author={Julian Killingback and Hamed Zamani},
+      year={2025},
+      eprint={2509.07253},
+      archivePrefix={arXiv},
+      primaryClass={cs.IR},
+      url={https://arxiv.org/abs/2509.07253}, 
+}
+```
 
 Additionally, as CRUMB is composed of several existing datasets, we ask that you also cite the original sources for the specific tasks you use. Please refer to Section 6.4 of our paper for the full list of citations.
