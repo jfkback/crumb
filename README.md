@@ -68,8 +68,47 @@ tot_full_doc = load_dataset("jfkback/crumb", "full_document_corpus", split="tip_
 theorem_retrieval_queries_and_qrels = load_dataset("jfkback/crumb", "evaluation_queries", split="theorem_retrieval")
 ```
 
-### Data Structure
-**Status: Coming Soon!**
+## Data Structure
+The dataset is organized into four subsets each containing various parts of CRUMB's data. The four subsets are `evaluation_queries`, `validation_queries`, `passage_corpus`, and `full_document_corpus`. Each subset has a split for each task (e.g. clinical_trial). One thing to note is some of the tasks use the same content for the passage and full document subsets. This is the case for tasks where documents were short enough that they did not require chunking.
+### *evaluation_queries* and *validation_queries*
+
+These configurations contain the queries and their corresponding ground-truth relevance labels (qrels). Both have the same structure.
+
+* **query_id**: A unique string identifier for the query.
+* **query_content**: The string content of the complex query.
+* **instruction**: An optional string providing a task-specific instruction (e.g., "Find relevant legal statutes").
+* **passage_qrels**: A list of dictionaries containing relevance judgments for the `passage_corpus`.
+    * **id**: The `document_id` of a passage from the `passage_corpus`.
+    * **label**: A `float32` graded relevance score (higher is more relevant).
+* **passage_binary_qrels**: Same as `passage_qrels`, but the `label` is a binary score (1 for relevant, 0 for not). Use these for binary metrics (e.g. Recall) if they are provided otherwise the non-binary ones are fine with a cutoff of relevance > 0.
+* **full_document_qrels**: A list of dictionaries containing relevance judgments for the `full_document_corpus`.
+    * **id**: The `document_id` of a document from the `full_document_corpus`.
+    * **label**: A `float32` graded relevance score.
+* **use_max_p**: A boolean flag used to identify whether this query collection should be evaluated with MaxP (where documents are aggrigated by their maximum scoring chunk).
+* **metadata**: A stringified JSON object that contains additional metadata about the query. This varies by task.
+### *passage_corpus*
+This configuration contains the corpus of chunked documents (passages). Note for 
+* **document_id**: A unique string identifier for the passage.
+* **document_content**: The text content of the passage.
+* **parent_id**: The `document_id` of the full document from which this passage was extracted, if applicable.
+* **metadata**: A stringified JSON object that contains additional metadata about the passage. This varies by task.
+### **full_document_corpus**
+This configuration contains the corpus of full, un-chunked documents.
+* **document_id**: A unique string identifier for the full document.
+* **document_content**: The complete text content of the document.
+* **parent_id**: Should be None for all documents as they have no parents.
+* **metadata**: A stringified JSON object that contains additional metadata about the passage. This varies by task.
+## How to Use and Evaluate
+Keep these important considerations in mind when evaluating:
+* Use the `passage_binary_qrels` if it is available for a task and you are using binary evaluation metrics such as Recall or Precision.
+* We highly suggest using MaxP for the passage (i.e. chunked) collection for datasets which do not have per-chunk labels these are:
+  * `clinical_trial`
+  * `tip_of_the_tongue`
+  * `set_operation_entity_retrieval`
+* Some of the tasks have the same content for the passage and full document collections, this is because the original documents were too short to chunk so the document is both a passage and a full document. Keep this in mind for evaluation as you do not need to evaluate on both subsets. These datasets are:
+  * `code_retrieval`
+  * `paper_retrieval`
+  * `theorem_retrieval`
 
 
 ## Evaluation
