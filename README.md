@@ -8,8 +8,8 @@
 
 This repository contains the code, data, and artifacts associated with our paper:
 
-> **Benchmarking Information Retrieval Models on Complex Retrieval Tasks**  
-> *Julian Killingback and Hamed Zamani*  
+> **Benchmarking Information Retrieval Models on Complex Retrieval Tasks**
+> *Julian Killingback and Hamed Zamani*
 > [Link to Paper (ArXiv)]([https://arxiv.org/abs/2509.07253](https://arxiv.org/abs/2509.07253))
 
 ## Overview
@@ -87,7 +87,7 @@ These configurations contain the queries and their corresponding ground-truth re
 * **use_max_p**: A boolean flag used to identify whether this query collection should be evaluated with MaxP (where documents are aggrigated by their maximum scoring chunk).
 * **metadata**: A stringified JSON object that contains additional metadata about the query. This varies by task.
 ### *passage_corpus*
-This configuration contains the corpus of chunked documents (passages). Note for 
+This configuration contains the corpus of chunked documents (passages). Note for
 * **document_id**: A unique string identifier for the passage.
 * **document_content**: The text content of the passage.
 * **parent_id**: The `document_id` of the full document from which this passage was extracted, if applicable.
@@ -113,11 +113,7 @@ Keep these important considerations in mind when evaluating:
 
 ## Evaluation
 
-To make benchmarking on CRUMB as simple as possible, we are developing a standardized evaluation library.
-
-**Status: Coming Soon!**
-
-This library will allow you to easily evaluate your model's retrieval runs against the ground-truth qrels for all CRUMB tasks.
+To make benchmarking on CRUMB as simple as possible, we have developed an evaluation library. See the details [here](crumb_eval/README.md).
 
 
 ## Baseline Results & Artifacts
@@ -148,13 +144,13 @@ If you use the CRUMB benchmark or any of its associated artifacts in your resear
 
 ```
 @misc{killingback2025benchmarkinginformationretrievalmodels,
-      title={Benchmarking Information Retrieval Models on Complex Retrieval Tasks}, 
+      title={Benchmarking Information Retrieval Models on Complex Retrieval Tasks},
       author={Julian Killingback and Hamed Zamani},
       year={2025},
       eprint={2509.07253},
       archivePrefix={arXiv},
       primaryClass={cs.IR},
-      url={https://arxiv.org/abs/2509.07253}, 
+      url={https://arxiv.org/abs/2509.07253},
 }
 ```
 
