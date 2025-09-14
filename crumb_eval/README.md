@@ -1,7 +1,7 @@
 # Using CRUMB Eval
 ## Install
 ```
-pip install -e git+https://github.com/jfkback/crumb/crumb_eval
+pip install git+https://github.com/jfkback/crumb#subdirectory=crumb_eval
 ```
 
 
