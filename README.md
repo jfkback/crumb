@@ -117,7 +117,7 @@ To make benchmarking on CRUMB as simple as possible, we have developed an evalua
 
 
 ## Baseline Results & Artifacts
-To facilitate further research and replication, we are releasing the artifacts from our baseline experiments.
+To facilitate further research and replication, we have released the artifacts from our baseline experiments.
 
 ### Baseline Model Runs
 Below are the retrieval runs (e.g., top 2000 documents per query) for all benchmarked models, including BM25, GTE, Promptriever, and Lion. These runs can be used for direct comparison and reranking experiments without needing to re-run the first-stage retrieval. All the rus are in a Google Drive folder, [here](https://drive.google.com/drive/folders/1x7oJnFBVnQSgGbNw5enWgbdd3VhN58gZ?usp=sharing). You can download the files going through the UI, but I suggest looking at [gdown](https://github.com/wkentaro/gdown) or the Google Drive interface provided by [rclone](https://rclone.org/drive).
@@ -161,12 +161,6 @@ Each file is a JSONL where each line contains a rewritten query, in the form:
    "original_item": A dictionary with the original query before being rewritten, has keys "content", "id", and "metadata". 
 }
 ```
-
-### Qualitative Examples
-
-**Status: Coming Soon!**
-
-To provide a better intuition for each task, we will release a sample of queries paired with a relevant document chunk. This can be useful for error analysis and understanding the unique challenges of each task.
 
 ## Citing CRUMB
 
