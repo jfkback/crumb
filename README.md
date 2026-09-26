@@ -150,7 +150,10 @@ The folder has the following structure:
 ├── [TASK NAME]
 │   ├── queries_gemma_3_27b_query_as_reasoning_steps.jsonl
 │   ├── queries_gemma_3_27b_query_to_answer_cot.jsonl
-│   └── queries_gemma_3_27b_query_to_doc_cot.jsonl
+│   ├── queries_gemma_3_27b_query_to_doc_cot.jsonl
+│   ├── queries_kimi_query_as_reasoning_steps.jsonl
+│   ├── queries_kimi_query_to_answer_cot.jsonl
+│   └── queries_kimi_query_to_doc_cot.jsonl
 ```
 Each file is a JSONL where each line contains a rewritten query, in the form:
 ```
@@ -161,6 +164,42 @@ Each file is a JSONL where each line contains a rewritten query, in the form:
    "original_item": A dictionary with the original query before being rewritten, has keys "content", "id", and "metadata". 
 }
 ```
+
+The approach descriptions below are copied verbatim from Section 4.2.2 of [Killingback and Zamani, *Benchmarking Information Retrieval Models on Complex Retrieval Tasks*](https://arxiv.org/abs/2509.07253), licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+
+**Query-to-Answer CoT** Given a query, we prompt the LLM to directly answer the question after an extended "thinking" period. The thinking information is not used.
+
+**Query-to-Document CoT** Given a query, we prompt the LLM to provide a document which provides an answer to the query after an extended "thinking" period. The query instruction provides the expected document type (e.g. a piece of code, web page, etc.). The thinking trace is not used for retrieval only the final document.
+
+**Query as Reasoning Trace** Given a query, the model is asked to understand the query, think about it, and produce a complete answer. Unlike previous approaches, the entire reasoning process is used as part of the query. This is similar to the approach used in BRIGHT (Su et al., 2025).
+
+#### Gemma 3 27B
+
+| Dataset Name | Query-to-Answer | Query-to-Doc | Query-as-Reasoning-Trace |
+| :--- | :---: | :---: | :---: |
+| Paper Retrieval | [link](https://drive.google.com/open?id=1yPrwP0Ufi6d4HdAqyRg_fkd9AmmmxBrf) | [link](https://drive.google.com/open?id=1-1oxDf_-fSE7L5InMhYLXL_-Y-1Tg2N7) | [link](https://drive.google.com/open?id=1xJWWG3b3LFRZsid_tME7zHpEqAmDR_9M) |
+| Code Retrieval | [link](https://drive.google.com/open?id=1IzRYlapyj6yV6p-92_qmZ3naSAL5Tm2M) | [link](https://drive.google.com/open?id=1ZHHHxHFpOdnbuOQIClmmbiUgAIKT8ovC) | [link](https://drive.google.com/open?id=1V6Md1MLOHh8OIHeaNCy_9pjaMMRYFozw) |
+| Theorem Retrieval | [link](https://drive.google.com/open?id=1xCyfkjUqIEslEFGE2TR34i1JHSGx3sN8) | [link](https://drive.google.com/open?id=1veOUIfNAkkwhRGPoMagQvPuiNUvhwWLX) | [link](https://drive.google.com/open?id=1e8lWVO4mkQD6nUXWBJJddVFLflMJAh1a) |
+| Legal QA | [link](https://drive.google.com/open?id=1PgYvrcWmcvxCQghtoEiBpJblsByJL1QO) | [link](https://drive.google.com/open?id=1pGtxhu5DxtQydrnprofiVFv0tpUF5PXa) | [link](https://drive.google.com/open?id=1c7SewzHw4in-QA0fFSQEW5Dp-n7vP9Pn) |
+| Tip-of-the-Tongue | [link](https://drive.google.com/open?id=1UGJkr6tEVh2pHYHwCI1jpZV0y1ngQNTU) | [link](https://drive.google.com/open?id=1YTWJryIp6QDG9BjSUTlCY9Ymh4HKeRP-) | [link](https://drive.google.com/open?id=1ODqzPRwrGcZqdy4_nvnyAHqMf0ONfMkR) |
+| Clinical Trial Retrieval | [link](https://drive.google.com/open?id=1afjPNuz9uYJc1iOl6wapyAww0n31K-DP) | [link](https://drive.google.com/open?id=1ofUSXS4OxAZJ4yMdmp2LATQ8jl_4qi2o) | [link](https://drive.google.com/open?id=10n5MNvacoeuiGiOCJDJ-EEAUXrO6YwFV) |
+| StackExchange QA | [link](https://drive.google.com/open?id=14HtYDNpSJAw6QPswYWo9jYc8yWUYPjij) | [link](https://drive.google.com/open?id=1X8IGL2pgu559JZqUQSJZB7x3avN1hWKp) | [link](https://drive.google.com/open?id=1TNY_5jOifEU7yomsFKHc5ffByIgP-Vy4) |
+| SetOps | [link](https://drive.google.com/open?id=1mVfPH4FwsPyq1_rGXXeyRwn5V67uv3_4) | [link](https://drive.google.com/open?id=1Hzg0v266zCmtLsyz9w1ke-W7sYMkRpCg) | [link](https://drive.google.com/open?id=19HlQQpGlz0PnjAY-ID7ICsdqeypIHXoC) |
+
+#### Kimi
+
+Kimi rewrites for Code Retrieval and Legal QA use random 500-query samples; the other datasets use their full test splits.
+
+| Dataset Name | Query-to-Answer | Query-to-Doc | Query-as-Reasoning-Trace |
+| :--- | :---: | :---: | :---: |
+| Paper Retrieval | [link](https://drive.google.com/open?id=1PMbBct_ITPPHIBH9snYg5O7f-U6hVUj0) | [link](https://drive.google.com/open?id=16GVZIFMdSGaaRqZtoNPr7l_Spsd3d4GV) | [link](https://drive.google.com/open?id=1SKAIjJpJvWvfdWU_4VaLa9UfKB_n0WrB) |
+| Code Retrieval | [link](https://drive.google.com/open?id=16f1cCbLongk2t02D_sVFb6h4SDe27Eez) | [link](https://drive.google.com/open?id=1fP0wxXGgX5ax-kWJvD6LRP-ICIjcI8D0) | [link](https://drive.google.com/open?id=1EF3jBJEVc0Ako4GsKsB_lMHCAnLjP589) |
+| Theorem Retrieval | [link](https://drive.google.com/open?id=132wggSb9N8KvlUNC4ae4Es-dIy9Tlzcn) | [link](https://drive.google.com/open?id=1hm4UoEd83QGRMyyL9BjdzLoBHwuYM4W9) | [link](https://drive.google.com/open?id=1YN4FxGjLkEuZh1VAt7Zs7tOLbGsqMMlu) |
+| Legal QA | [link](https://drive.google.com/open?id=14M-LgE-TP1iAy3lRmZ6qwQTgKKVX9nGy) | [link](https://drive.google.com/open?id=1Vhj4Q34gx5kyL40RHCeQ2WXW5IETlktc) | [link](https://drive.google.com/open?id=1O5tJ2KioGXLlRk-Liv-Cq0f3beYEwtp5) |
+| Tip-of-the-Tongue | [link](https://drive.google.com/open?id=1KRjgSXPIyruwTit3N3qs68j3MDGsJojg) | [link](https://drive.google.com/open?id=1_ZEEddol1buPy9b1v7gqBAKDVdhssTrW) | [link](https://drive.google.com/open?id=1UUGI_I-vd9BVzrrx0Uomr1jhP1jkh53-) |
+| Clinical Trial Retrieval | [link](https://drive.google.com/open?id=1CuQpBZzIptHRSaRu1Nt2vFVrI6rfu3ry) | [link](https://drive.google.com/open?id=1pjcdHhlFi8zo3rQc8FagDp31M0KTit_s) | [link](https://drive.google.com/open?id=1UAVRCYBW-BhSjR-l2qItyXlmDa4KXiZ1) |
+| StackExchange QA | [link](https://drive.google.com/open?id=1iYNtjeq2M9kXgTgRLrwFl2NBZ5CtDNJQ) | [link](https://drive.google.com/open?id=1RjF2dBhhpniD0pbbRB3AD1QvUB-eN5fX) | [link](https://drive.google.com/open?id=17M1bILljbJY-_S-UNFsSdC5M3o10QVi0) |
+| SetOps | [link](https://drive.google.com/open?id=1PAd8shmAiSng-0s410j4Gyxrl0xQApmy) | [link](https://drive.google.com/open?id=1N5278QV-xr4mO-7SAVvutF71JNaMJM08) | [link](https://drive.google.com/open?id=1HwAhZTaWzFi0EXCZP5ZJchg-1y8j7jv0) |
 
 ## Citing CRUMB
 
